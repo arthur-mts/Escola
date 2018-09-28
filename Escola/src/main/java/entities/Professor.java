@@ -9,6 +9,25 @@ import javax.persistence.SequenceGenerator;
 @Entity
 public class Professor implements Identificavel {
 	private String nome;
+	private String senha;
+	private String login;
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "prof_seq_gen")
 	@SequenceGenerator(name = "prof_seq_gen", sequenceName = "prof_id_seq")
 	@Id

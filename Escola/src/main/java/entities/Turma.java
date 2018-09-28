@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Turma {
+public class Turma implements Identificavel {
 	@Id
 	@GeneratedValue(generator = "turma_seq", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(name = "turma_seq")
