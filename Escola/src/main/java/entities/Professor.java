@@ -1,11 +1,13 @@
 package entities;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
-public class Professor implements Identificavel{
+@Entity
+public class Professor implements Identificavel {
 	private String nome;
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "prof_seq_gen")
 	@SequenceGenerator(name = "prof_seq_gen", sequenceName = "prof_id_seq")
