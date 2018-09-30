@@ -51,7 +51,20 @@ public class Disciplina implements Identificavel {
 		this.alunos = alunos;
 	}
 
+	public String getDescri() {
+		return descri;
+	}
+
+	public void setDescri(String descri) {
+		this.descri = descri;
+	}
+	
+	public Disciplina() {
+		super();
+	}
+
 	private String nome;
+	private String descri;
 	@ManyToOne
 	@JoinColumn(name = "id_prof_disc")
 	private Professor prof;

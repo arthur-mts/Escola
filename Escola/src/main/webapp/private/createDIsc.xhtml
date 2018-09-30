@@ -16,16 +16,24 @@
 		<p:panelGrid style="margin-botton:20px" columns="2" layout="grid">
 			<p:outputLabel value="Nome da disciplina:" />
 			<p:inputText id="nomeDisc" label="nome"
-				value="#{disciplinaBean.disciplina.nome}" style="width:350px" required="true" />
-
-			<p:outputLabel value="Data de nascimento:" />
-			<p:inputText id="nascAluno" label="nasc"
-				value="#{alunoBean.aluno.dataDeNasc}" style="width:350px"
+				value="#{disciplinaBean.disciplina.nome}" style="width:350px"
 				required="true" />
+
+			<p:outputLabel value="Descricao: " />
+			<p:inputText id="descriDis" label="descr"
+				value="#{disciplinaBean.disciplina.descri}" style="width:350px"
+				required="true" />
+
+			<p:outputLabel value="Professor: "/>
+			<p:selectOneMenu value="#{disciplinaBean.disciplina.id}" required="true">
+				<f:selectItems var="prof" value="#{professorBean.profs}"
+					itemLabel="#{prof.nome}" itemValue="#{prof.id}">
+			</p:selectOneMenu>
+
 		</p:panelGrid>
 
-		<p:commandButton value="Salvar Aluno" update="growl: form"
-			action="#{alunoBean.salvarAluno()}">
+		<p:commandButton value="Salvar Disciplina" update="growl: form"
+			action="#{disciplinaBean.salvarDisc()}">
 		</p:commandButton>
 
 	</h:form>

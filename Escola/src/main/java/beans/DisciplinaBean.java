@@ -4,9 +4,11 @@ import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedProperty;
 import javax.inject.Named;
 
 import entities.Disciplina;
+import entities.Professor;
 import services.DisciplinaService;
 
 @SessionScoped
@@ -15,11 +17,22 @@ public class DisciplinaBean {
 	private Disciplina disciplina = new Disciplina();
 	private Set<Disciplina> disciplinas;
 	private DisciplinaService service;
+	@ManagedProperty(value="#{professorBean}")
+	private ProfessorBean profBean;
 
 	@PostConstruct
 	private void init() {
-		// TODO Auto-generated method stub
+		service = new DisciplinaService();
+	}
 
+	private void salvarDisc() {
+		for(Professor p: profBean.getProfs()) {
+			if(disciplina.getProf().getId() == p.getId()) {
+				disciplina.setProf(p);
+			}
+		}
+		service.save(disciplina);
+		disciplina = new Disciplina();
 	}
 
 	public Disciplina getDisciplina() {
