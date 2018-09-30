@@ -8,12 +8,17 @@ Repositório dos projetos utilizados como exemplo na disciplina de Desenvolvimen
 
 jboss-cli.bat
 
+Ou no Linux:
+./jboss-cli.sh
+
 4. Execute os seguintes comandos:
 
 connect
 
 No Windows:
 module add --name=org.postgres --resources=C:\Users\Aluno\.m2\repository\org\postgresql\postgresql\9.4.1212\postgresql-9.4.1212.jar --dependencies=javax.api,javax.transaction.api
+
+
 Ou no Linux:
 module add --name=org.postgres --resources=/home/arthurmts/.m2/repository/org/postgresql/postgresql/9.4.1212/postgresql-9.4.1212.jar --dependencies=javax.api,javax.transaction.api
 
