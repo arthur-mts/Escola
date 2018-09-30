@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -14,8 +17,11 @@ public class Turma implements Identificavel {
 	@GeneratedValue(generator = "turma_seq", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(name = "turma_seq")
 	private Long id;
+	@OneToMany
+	@JoinColumn(name = "id_aluno")
 	private Set<Aluno> alunos;
 	private String desc;
+
 	public Long getId() {
 		return id;
 	}
@@ -23,7 +29,6 @@ public class Turma implements Identificavel {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public Set<Aluno> getAlunos() {
 		return alunos;
