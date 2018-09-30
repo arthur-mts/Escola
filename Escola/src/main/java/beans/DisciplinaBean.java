@@ -1,10 +1,12 @@
 package beans;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedProperty;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import entities.Disciplina;
@@ -13,9 +15,14 @@ import services.DisciplinaService;
 
 @SessionScoped
 @Named
-public class DisciplinaBean {
+public class DisciplinaBean implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Disciplina disciplina = new Disciplina();
 	private Set<Disciplina> disciplinas;
+	@Inject
 	private DisciplinaService service;
 	@ManagedProperty(value="#{professorBean}")
 	private ProfessorBean profBean;

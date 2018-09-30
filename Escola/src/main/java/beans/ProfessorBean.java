@@ -1,5 +1,6 @@
 package beans;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -7,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import entities.Professor;
@@ -14,9 +16,14 @@ import services.ProfessorService;
 
 @SessionScoped
 @Named
-public class ProfessorBean {
+public class ProfessorBean implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Professor professor = new Professor();
 	private Set<Professor> profs;
+	@Inject
 	private ProfessorService service;
 	private String confirmSenha;
 

@@ -20,7 +20,8 @@ public class Turma implements Identificavel {
 	@OneToMany
 	@JoinColumn(name = "id_aluno")
 	private Set<Aluno> alunos;
-	private String desc;
+	private String nome;
+	private String descricao;
 
 	public Long getId() {
 		return id;
@@ -38,11 +39,21 @@ public class Turma implements Identificavel {
 		this.alunos = alunos;
 	}
 
-	public String getDesc() {
-		return desc;
+
+
+	public String getNome() {
+		return nome;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 }
