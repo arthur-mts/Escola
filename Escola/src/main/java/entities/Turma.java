@@ -14,7 +14,8 @@ public class Turma implements Identificavel {
 	@GeneratedValue(generator = "turma_seq", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(name = "turma_seq")
 	private Long id;
-
+	private Set<Aluno> alunos;
+	private String desc;
 	public Long getId() {
 		return id;
 	}
@@ -23,14 +24,20 @@ public class Turma implements Identificavel {
 		this.id = id;
 	}
 
-	public Set<Disciplina> getDisciplinas() {
-		return disciplinas;
+
+	public Set<Aluno> getAlunos() {
+		return alunos;
 	}
 
-	public void setDisciplinas(Set<Disciplina> disciplinas) {
-		this.disciplinas = disciplinas;
+	public void setAlunos(Set<Aluno> alunos) {
+		this.alunos = alunos;
 	}
 
-	private Set<Disciplina> disciplinas;
+	public String getDesc() {
+		return desc;
+	}
 
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
 }

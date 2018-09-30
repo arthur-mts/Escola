@@ -1,9 +1,15 @@
 package entities;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -14,6 +20,10 @@ public class Aluno implements Identificavel {
 	@Id
 	private Long id;
 	private String dataDeNasc;
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "ALUNO_DISCIPLINA", joinColumns = { @JoinColumn(name = "DISCIPLINA_ID") }, inverseJoinColumns = {
+			@JoinColumn(name = "ALUNO_ID") })
+	private Set<Disciplina> discs;
 
 	public String getNome() {
 		return nome;
@@ -41,5 +51,13 @@ public class Aluno implements Identificavel {
 
 	public Aluno() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public Set<Disciplina> getDiscs() {
+		return discs;
+	}
+
+	public void setDiscs(Set<Disciplina> discs) {
+		this.discs = discs;
 	}
 }
