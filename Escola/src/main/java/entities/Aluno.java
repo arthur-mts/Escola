@@ -50,7 +50,7 @@ public class Aluno implements Identificavel {
 	}
 
 	public Aluno() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	public Set<Disciplina> getDiscs() {

@@ -32,7 +32,7 @@ public class ProfessorBean implements Serializable{
 		service = new ProfessorService();
 	}
 
-	private void salvarProf() {
+	public void salvarProf() {
 		if (!professor.getSenha().equals(confirmSenha)) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR", "As senhas não conferem!"));
 		} else {

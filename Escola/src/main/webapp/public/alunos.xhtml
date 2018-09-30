@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>CRUD Escola</title>
+</h:head>
+
+<h:body>
+	<h1>Turmas cadastradas</h1>
+	<h:form id="form">
+		<p:growl id="growl" showDetail="true" sticky="true" />
+		<p:dataTable var="aluno" value="#{alunoBean.alunos}">
+			<p:column headerText="ID">
+				<h:outputText value="#{aluno.id}" />
+			</p:column>
+
+			<p:column headerText="Data de Nasc">
+				<h:outputText value="#{aluno.dataDeNasc}" />
+			</p:column>
+
+			<p:column headerText="Disciplinas">
+				<h:outputText value="#{aluno.}" />
+			</p:column>
+
+		</p:dataTable>
+	</h:form>
+</h:body>
+</html>

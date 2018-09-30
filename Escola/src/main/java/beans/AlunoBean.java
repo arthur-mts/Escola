@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -19,11 +20,13 @@ public class AlunoBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Aluno aluno = new Aluno();
-	private Set<Aluno> alunos;	
+	private Set<Aluno> alunos;
+	@Inject
 	private AlunoService service;
 
 	@PostConstruct
 	private void init() {
+		alunos = (Set<Aluno>) service.getAll();
 		setService(new AlunoService());
 	}
 	
