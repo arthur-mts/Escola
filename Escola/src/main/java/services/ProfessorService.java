@@ -5,12 +5,13 @@ import java.security.MessageDigest;
 import java.util.Base64;
 import java.util.List;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import dao.ProfessorDAO;
 import entities.Professor;
 import util.TransacionalCdi;
-
+@ApplicationScoped
 public class ProfessorService implements Service<Professor>, Serializable {
 	/**
 	 * 

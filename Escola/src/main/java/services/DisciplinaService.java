@@ -3,13 +3,18 @@ package services;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import dao.DisciplinaDAO;
 import entities.Disciplina;
 import util.TransacionalCdi;
-
+@ApplicationScoped
 public class DisciplinaService implements Serializable, Service<Disciplina> {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Inject
 	private DisciplinaDAO dao;
 

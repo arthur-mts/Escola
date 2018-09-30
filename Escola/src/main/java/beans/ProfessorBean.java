@@ -1,6 +1,7 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -16,13 +17,21 @@ import services.ProfessorService;
 
 @SessionScoped
 @Named
-public class ProfessorBean implements Serializable{
+public class ProfessorBean implements Serializable {
+	public Collection<Professor> getProfs() {
+		return profs;
+	}
+
+	public void setProfs(Collection<Professor> profs) {
+		this.profs = profs;
+	}
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private Professor professor = new Professor();
-	private Set<Professor> profs;
+	private Collection<Professor> profs;
 	@Inject
 	private ProfessorService service;
 	private String confirmSenha;
@@ -34,7 +43,7 @@ public class ProfessorBean implements Serializable{
 
 	public void salvarProf() {
 		if (!professor.getSenha().equals(confirmSenha)) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR", "As senhas não conferem!"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR", "As senhas nï¿½o conferem!"));
 		} else {
 			boolean sameLogin = false;
 			for (Professor p : profs) {
@@ -44,7 +53,7 @@ public class ProfessorBean implements Serializable{
 			}
 			if (sameLogin) {
 				FacesContext.getCurrentInstance().addMessage(null,
-						new FacesMessage("ERROR", "Login já esta cadastrado"));
+						new FacesMessage("ERROR", "Login jï¿½ esta cadastrado"));
 			} else {
 				service.save(professor);
 				professor = new Professor();
@@ -59,10 +68,6 @@ public class ProfessorBean implements Serializable{
 
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
-	}
-
-	public Set<Professor> getProfs() {
-		return profs;
 	}
 
 	public void setProfs(Set<Professor> profs) {

@@ -1,6 +1,7 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
@@ -19,7 +20,7 @@ public class TurmaBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Turma turma = new Turma();
-	private Set<Turma> turmas;
+	private Collection<Turma> turmas;
 	@Inject
 	private TurmaService service;
 
@@ -35,9 +36,6 @@ public class TurmaBean implements Serializable {
 		this.turma = turma;
 	}
 
-	public Set<Turma> getTurmas() {
-		return turmas;
-	}
 
 	public void setTurmas(Set<Turma> turmas) {
 		this.turmas = turmas;
@@ -54,5 +52,13 @@ public class TurmaBean implements Serializable {
 	@PostConstruct
 	private void init() {
 
+	}
+
+	public Collection<Turma> getTurmas() {
+		return turmas;
+	}
+
+	public void setTurmas(Collection<Turma> turmas) {
+		this.turmas = turmas;
 	}
 }

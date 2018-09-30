@@ -15,7 +15,7 @@ public class JPAUtil {
 	public EntityManagerFactory criarEMF() {
 		EntityManagerFactory emf = null;
 		try {
-			emf = Persistence.createEntityManagerFactory("KArtHugo");
+			emf = Persistence.createEntityManagerFactory("Escola");
 		} catch (Throwable t) {
 			t.printStackTrace();
 			throw t;

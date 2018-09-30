@@ -1,14 +1,14 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+
 
 import entities.Aluno;
 import services.AlunoService;
@@ -20,17 +20,17 @@ public class AlunoBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Aluno aluno = new Aluno();
-	private Set<Aluno> alunos;
+	private Collection<Aluno> alunos;
 	@Inject
 	private AlunoService service;
 
 	@PostConstruct
 	private void init() {
-		alunos = (Set<Aluno>) service.getAll();
+		setAlunos(service.getAll());
 		setService(new AlunoService());
 	}
 	
-	private void salvarAluno() {
+	public void salvarAluno() {
 		service.save(aluno);
 		aluno = new Aluno();
 
@@ -44,20 +44,20 @@ public class AlunoBean implements Serializable {
 		this.aluno = aluno;
 	}
 
-	public Set<Aluno> getAlunos() {
-		return alunos;
-	}
-
-	public void setAlunos(Set<Aluno> alunos) {
-		this.alunos = alunos;
-	}
-
 	public AlunoService getService() {
 		return service;
 	}
 
 	public void setService(AlunoService service) {
 		this.service = service;
+	}
+
+	public Collection<Aluno> getAlunos() {
+		return alunos;
+	}
+
+	public void setAlunos(Collection<Aluno> alunos) {
+		this.alunos = alunos;
 	}
 
 }

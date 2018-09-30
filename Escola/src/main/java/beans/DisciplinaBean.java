@@ -1,6 +1,7 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
@@ -21,7 +22,7 @@ public class DisciplinaBean implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private Disciplina disciplina = new Disciplina();
-	private Set<Disciplina> disciplinas;
+	private Collection<Disciplina> disciplinas;
 	@Inject
 	private DisciplinaService service;
 	@ManagedProperty(value="#{professorBean}")
@@ -50,10 +51,7 @@ public class DisciplinaBean implements Serializable{
 		this.disciplina = disciplina;
 	}
 
-	public Set<Disciplina> getDisciplinas() {
-		return disciplinas;
-	}
-
+	
 	public void setDisciplinas(Set<Disciplina> disciplinas) {
 		this.disciplinas = disciplinas;
 	}
@@ -64,5 +62,13 @@ public class DisciplinaBean implements Serializable{
 
 	public void setService(DisciplinaService service) {
 		this.service = service;
+	}
+
+	public Collection<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+
+	public void setDisciplinas(Collection<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
 	}
 }
