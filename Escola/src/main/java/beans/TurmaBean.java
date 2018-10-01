@@ -1,5 +1,6 @@
 package beans;
 
+import java.awt.List;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Set;
@@ -20,6 +21,7 @@ public class TurmaBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Turma turma = new Turma();
+	private Set<Long> selectIdAlunos;
 	private Collection<Turma> turmas;
 	@Inject
 	private TurmaService service;
@@ -66,5 +68,13 @@ public class TurmaBean implements Serializable {
 
 	public void setTurmas(Collection<Turma> turmas) {
 		this.turmas = turmas;
+	}
+
+	public Set<Long> getSelectIdAlunos() {
+		return selectIdAlunos;
+	}
+
+	public void setSelectIdAlunos(Set<Long> selectIdAlunos) {
+		this.selectIdAlunos = selectIdAlunos;
 	}
 }
