@@ -29,11 +29,11 @@ public class DisciplinaBean implements Serializable{
 	private ProfessorBean profBean;
 
 	@PostConstruct
-	private void init() {
+	public void init() {
 		service = new DisciplinaService();
 	}
 
-	private void salvarDisc() {
+	public void salvarDisc() {
 		for(Professor p: profBean.getProfs()) {
 			if(disciplina.getProf().getId() == p.getId()) {
 				disciplina.setProf(p);
