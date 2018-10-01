@@ -23,13 +23,19 @@ public class TurmaBean implements Serializable {
 	private Collection<Turma> turmas;
 	@Inject
 	private TurmaService service;
+	
+	public void limpar() {
+		turma = new Turma();
+		turmas = getService().getAll();
+	}
 
 	public Turma getTurma() {
 		return turma;
 	}
 
 	public void salvarTurma() {
-
+		service.save(turma);
+		limpar();
 	}
 
 	public void setTurma(Turma turma) {
@@ -51,7 +57,7 @@ public class TurmaBean implements Serializable {
 
 	@PostConstruct
 	private void init() {
-
+		limpar();
 	}
 
 	public Collection<Turma> getTurmas() {

@@ -16,4 +16,32 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
+	<session-config>
+		<session-timeout>1</session-timeout>
+	</session-config>
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<realm-name>escolaJdbcRealm</realm-name>
+		<form-login-config>
+			<form-login-page>/public/login.xhtml</form-login-page>
+			<form-error-page>/public/login.xhtml?error=true</form-error-page>
+		</form-login-config>
+	</login-config>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Área protegida</web-resource-name>
+			<description />
+			<url-pattern>/private/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<description />
+			<role-name>PROFESSOR</role-name>
+		</auth-constraint>
+		<user-data-constraint>
+			<transport-guarantee>NONE</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+	<security-role>
+		<role-name>PROFESSOR</role-name>
+	</security-role>
 </web-app>

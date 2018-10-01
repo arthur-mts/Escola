@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import dao.ProfessorDAO;
 import entities.Professor;
@@ -22,7 +23,6 @@ public class ProfessorService implements Service<Professor>, Serializable {
 
 	@Override
 	@TransacionalCdi
-
 	public void save(Professor e) {
 		e.setSenha(hash(e.getSenha()));
 		dao.save(e);

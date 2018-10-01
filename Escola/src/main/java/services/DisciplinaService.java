@@ -5,11 +5,13 @@ import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import dao.DisciplinaDAO;
 import entities.Disciplina;
 import util.TransacionalCdi;
 @ApplicationScoped
+@Named
 public class DisciplinaService implements Serializable, Service<Disciplina> {
 	/**
 	 * 

@@ -11,12 +11,12 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import entities.Disciplina;
-import entities.Professor;
 import services.DisciplinaService;
+import services.ProfessorService;
 
 @SessionScoped
 @Named
-public class DisciplinaBean implements Serializable{
+public class DisciplinaBean implements Serializable {
 	/**
 	 * 
 	 */
@@ -24,23 +24,28 @@ public class DisciplinaBean implements Serializable{
 	private Disciplina disciplina = new Disciplina();
 	private Collection<Disciplina> disciplinas;
 	@Inject
+	private ProfessorService profService;
+	@Inject
 	private DisciplinaService service;
-	@ManagedProperty(value="#{professorBean}")
+	@Inject
+	@ManagedProperty(value = "#{professorBean}")
 	private ProfessorBean profBean;
 
 	@PostConstruct
 	public void init() {
-		service = new DisciplinaService();
+		limpar();
+		disciplina.getProf().setId(0L);
+	}
+
+	private void limpar() {
+		disciplina = new Disciplina();
+		disciplinas = service.getAll();
 	}
 
 	public void salvarDisc() {
-		for(Professor p: profBean.getProfs()) {
-			if(disciplina.getProf().getId() == p.getId()) {
-				disciplina.setProf(p);
-			}
-		}
+		disciplina.setProf(profService.getByID(disciplina.getProf().getId()));
 		service.save(disciplina);
-		disciplina = new Disciplina();
+		limpar();
 	}
 
 	public Disciplina getDisciplina() {
@@ -51,7 +56,6 @@ public class DisciplinaBean implements Serializable{
 		this.disciplina = disciplina;
 	}
 
-	
 	public void setDisciplinas(Set<Disciplina> disciplinas) {
 		this.disciplinas = disciplinas;
 	}
@@ -70,5 +74,13 @@ public class DisciplinaBean implements Serializable{
 
 	public void setDisciplinas(Collection<Disciplina> disciplinas) {
 		this.disciplinas = disciplinas;
+	}
+
+	public ProfessorService getProfService() {
+		return profService;
+	}
+
+	public void setProfService(ProfessorService profService) {
+		this.profService = profService;
 	}
 }

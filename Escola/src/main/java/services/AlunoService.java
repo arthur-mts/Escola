@@ -5,12 +5,14 @@ import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import dao.AlunoDAO;
 import entities.Aluno;
 import util.TransacionalCdi;
 
 @ApplicationScoped
+@Named
 public class AlunoService implements Serializable, Service<Aluno> {
 
 	private static final long serialVersionUID = -7803325791425670859L;

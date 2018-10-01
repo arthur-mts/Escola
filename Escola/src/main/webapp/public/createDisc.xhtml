@@ -24,10 +24,11 @@
 				value="#{disciplinaBean.disciplina.descri}" style="width:350px"
 				required="true" />
 
-			<p:outputLabel value="Professor: "/>
-			<p:selectOneMenu value="#{disciplinaBean.disciplina.id}" required="true">
+			<p:outputLabel value="Professor: " />
+			<p:selectOneMenu value="#{disciplinaBean.disciplina.prof.id}" required="true">
 				<f:selectItems var="prof" value="#{professorBean.profs}"
 					itemLabel="#{prof.nome}" itemValue="#{prof.id}">
+				</f:selectItems>
 			</p:selectOneMenu>
 
 		</p:panelGrid>

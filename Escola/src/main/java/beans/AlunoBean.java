@@ -2,7 +2,6 @@ package beans;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -27,7 +26,6 @@ public class AlunoBean implements Serializable {
 	@PostConstruct
 	private void init() {
 		setAlunos(service.getAll());
-		setService(new AlunoService());
 	}
 	
 	public void salvarAluno() {

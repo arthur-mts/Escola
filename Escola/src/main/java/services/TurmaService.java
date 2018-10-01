@@ -6,12 +6,14 @@ import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import dao.TurmaDAO;
 import entities.Turma;
 import util.TransacionalCdi;
 
 @ApplicationScoped
+@Named
 public class TurmaService implements Serializable, Service<Turma> {
 
 	/**

@@ -2,7 +2,6 @@ package beans;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
@@ -37,13 +36,18 @@ public class ProfessorBean implements Serializable {
 	private String confirmSenha;
 
 	@PostConstruct
-	private void init() {
-		service = new ProfessorService();
+	public void init() {
+		limpar();
+	}
+	
+	public void limpar() {
+		professor = new Professor();
+		profs = getService().getAll();
 	}
 
 	public void salvarProf() {
 		if (!professor.getSenha().equals(confirmSenha)) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR", "As senhas n�o conferem!"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR", "As senhas nao conferem!"));
 		} else {
 			boolean sameLogin = false;
 			for (Professor p : profs) {
@@ -53,10 +57,10 @@ public class ProfessorBean implements Serializable {
 			}
 			if (sameLogin) {
 				FacesContext.getCurrentInstance().addMessage(null,
-						new FacesMessage("ERROR", "Login j� esta cadastrado"));
+						new FacesMessage("ERROR", "Login ja esta cadastrado"));
 			} else {
 				service.save(professor);
-				professor = new Professor();
+				limpar();
 			}
 		}
 

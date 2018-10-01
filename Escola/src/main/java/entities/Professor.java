@@ -57,4 +57,7 @@ public class Professor implements Identificavel {
 	public void setEspecializacao(String especializacao) {
 		this.especializacao = especializacao;
 	}
+	public Professor() {
+		super();
+	}
 }

@@ -61,6 +61,7 @@ public class Disciplina implements Identificavel {
 	
 	public Disciplina() {
 		super();
+		prof = new Professor();
 	}
 
 	private String nome;
