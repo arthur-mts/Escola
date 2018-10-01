@@ -31,8 +31,8 @@ module add --name=org.postgres --resources=/home/arthurmts/.m2/repository/org/po
 
 /subsystem=security/security-domain=escolaJdbcRealm/authentication=classic:add(login-modules=[{code=Database, flag=Required, module-options={ \
     dsJndiName="java:/escolaDS", \
-    principalsQuery="select password from professor where username = ?", \
-    rolesQuery="select grupo, 'Roles' from professor where username = ?", \
+    principalsQuery="select senha from professor where login = ?", \
+    rolesQuery="select 'PROFESSOR', 'Roles' from professor where login = ?", \
     hashAlgorithm="SHA-256", \
     hashEncoding="base64" \
 }}])
