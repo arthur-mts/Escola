@@ -18,12 +18,18 @@
 			<p:inputText id="nomeTurma" label="nome" required="true"
 				value="#{turmaBean.turma.nome}" style="width:350px" />
 
-			<p:outputLabel value="Descricao: "/>
+			<p:outputLabel value="Descricao: " />
 			<p:inputText id="descTurma" label="dsc"
-				value="#{turmaBean.turma.descricao}" style="width:350px" />
-				
-			<p:outputLabel value="Selecione os alunos da turma: "/>
-			<p:selectManyMenu id="alunos" value="#{turmaBean.selectIdAlunos}" var="a" showCheckbox="true"></p:selectManyMenu>
+				value="#{turmaBean.turma.descricao}" style="width:350px"
+				required="true" />
+
+			<p:outputLabel value="Selecione os alunos da turma: " />
+			<p:selectManyMenu id="alunos" value="#{turmaBean.selectIdAlunos}"
+				filter="true" filterMatchMode="contains" required="true"
+				showCheckbox="true">
+				<f:selectItems value="#{turmaBean.alunos}" var="aluno"
+					itemLabel="#{aluno.nome}" itemValue="#{aluno.id}"></f:selectItems>
+			</p:selectManyMenu>
 
 		</p:panelGrid>
 
