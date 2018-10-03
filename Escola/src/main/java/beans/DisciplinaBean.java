@@ -7,13 +7,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.PrimeFaces;
-import org.primefaces.component.picklist.PickList;
 import org.primefaces.model.DualListModel;
 import entities.Aluno;
 import entities.Disciplina;
@@ -21,7 +20,7 @@ import services.AlunoService;
 import services.DisciplinaService;
 import services.ProfessorService;
 
-@SessionScoped
+@ApplicationScoped
 @Named
 public class DisciplinaBean implements Serializable {
 	/**
@@ -66,9 +65,11 @@ public class DisciplinaBean implements Serializable {
 	}
 
 	public void salvarPickListAluno() {
-		Set<Aluno> alunosDiscSelecionada = new HashSet<Aluno>(getPickListAluno().getTarget());
-		discMatriculaAluno.setAlunos(alunosDiscSelecionada);
+		Set<Aluno> alunosDiscSelecionada = new HashSet<Aluno>();
+		alunosDiscSelecionada.addAll(getPickListAluno().getTarget());
+		discMatriculaAluno.getAlunos().addAll(alunosDiscSelecionada);
 		service.update(discMatriculaAluno);
+		
 		limpar();
 		PrimeFaces.current().ajax().update("form");
 		setRenderPanelCadastro(false);

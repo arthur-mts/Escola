@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
@@ -71,7 +72,9 @@ public class Disciplina implements Identificavel {
 	@ManyToOne
 	@JoinColumn(name = "id_prof_disc")
 	private Professor prof;
-	@ManyToMany(mappedBy = "discs", cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "matricula_aluno_disciplina", joinColumns = { @JoinColumn(name = "id_disciplina") }, inverseJoinColumns = {
+			@JoinColumn(name = "id_aluno") })
 	private Set<Aluno> alunos;
 
 }

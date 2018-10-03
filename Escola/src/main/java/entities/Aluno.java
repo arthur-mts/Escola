@@ -20,9 +20,7 @@ public class Aluno implements Identificavel {
 	@Id
 	private Long id;
 	private String dataDeNasc;
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "matricula_aluno_disc", joinColumns = { @JoinColumn(name = "disc_aluno_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "aluno_disc_id") })
+	@ManyToMany(mappedBy = "alunos", cascade = CascadeType.ALL)
 	private Set<Disciplina> discs;
 
 	public String getNome() {

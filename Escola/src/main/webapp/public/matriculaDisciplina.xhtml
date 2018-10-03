@@ -20,7 +20,7 @@
 		<p:menuitem icon="ui-icon-disk" value="Create Turma"
 			url="createTurma.xhtml" />
 		<p:menuitem icon="ui-icon-disk" value="Mat disciplina"
-			url="createTurma.xhtml" />
+			url="matriculaDisciplina.xhtml.xhtml" />
 
 
 	</p:tabMenu>
@@ -69,11 +69,11 @@
 		<p:dialog widgetVar="discDialog" resizable="false" modal="true"
 			header="Alunos de #{disciplinaBean.discSelecionada.nome}">
 			<p:outputPanel id="discDialogPanel" style="text-align:center;">
-			
+
 				<p:dataTable var="alunoMatriculado"
 					value="#{disciplinaBean.discSelecionada.alunos}"
 					emptyMessage="Sem alunos cadastrados">
-					
+
 					<p:column headerText="Nome">
 						<h:outputText value="#{alunoMatriculado.nome}" />
 					</p:column>
@@ -92,10 +92,12 @@
 			<p:pickList value="#{disciplinaBean.pickListAluno}"
 				id="pickListAlunos" var="aluno" itemLabel="#{aluno.nome}"
 				showSourceFilter="true" filterMatchMode="contains"
-				showCheckbox="true" itemValue="#{aluno}"
+				showTargetFilter="true" showCheckbox="true" itemValue="#{aluno}"
+				addAllLabel="Matricular todos" addLabel="Matricular"
+				removeAllLabel="Remover todos" removeLabel="Remover"
 				converter="alunoPickListConverter" required="true"
 				requiredMessage="Selecione ao menos um aluno!">
-
+				
 				<f:facet name="sourceCaption">Todos os alunos</f:facet>
 				<f:facet name="targetCaption">Alunos cadastrados</f:facet>
 			</p:pickList>
