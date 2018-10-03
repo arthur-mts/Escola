@@ -5,15 +5,29 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-	<title>zap</title>
+	<title>Escola</title>
 </h:head>
 
 <h:body>
-<h1> kkk zap</h1>
+	<p:tabMenu>
+		<p:menuitem icon="ui-icon-disk" value="Create Prof"
+			url="createProf.xhtml" />
+		<p:menuitem icon="ui-icon-disk" value="Create Aluno"
+			url="createAluno.xhtml" />
+		<p:menuitem icon="ui-icon-disk" value="Create Disc"
+			url="createDisc.xhtml" />
+		<p:menuitem icon="ui-icon-disk" value="Create Turma"
+			url="createTurma.xhtml" />
+		<p:menuitem icon="ui-icon-disk" value="Mat disciplina"
+			url="matriculaDisciplina.xhtml" />
+
+
+	</p:tabMenu>
+	<h1>Cadastro de Alunos</h1>
 	<h:form id="form">
 		<p:growl id="growl" showDetail="true" sticky="true" />
 
-		<p:panelGrid style="margin-botton:20px" columns="2" layout="grid">		
+		<p:panelGrid style="margin-botton:20px" columns="2" layout="grid">
 			<p:outputLabel value="Nome do aluno:" />
 			<p:inputText id="nomeAluno" label="nome"
 				value="#{alunoBean.aluno.nome}" style="width:350px" required="true" />

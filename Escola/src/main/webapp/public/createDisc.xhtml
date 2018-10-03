@@ -5,11 +5,25 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-	<title>CRUD Escola</title>
+	<title>Escola</title>
 </h:head>
 
 <h:body>
-	<h1>Create Disciplina</h1>
+	<p:tabMenu>
+		<p:menuitem icon="ui-icon-disk" value="Create Prof"
+			url="createProf.xhtml" />
+		<p:menuitem icon="ui-icon-disk" value="Create Aluno"
+			url="createAluno.xhtml" />
+		<p:menuitem icon="ui-icon-disk" value="Create Disc"
+			url="createDisc.xhtml" />
+		<p:menuitem icon="ui-icon-disk" value="Create Turma"
+			url="createTurma.xhtml" />
+		<p:menuitem icon="ui-icon-disk" value="Mat disciplina"
+			url="matriculaDisciplina.xhtml" />
+
+
+	</p:tabMenu>
+	<h1>Cadastro de Disciplinas</h1>
 	<h:form id="form">
 		<p:growl id="growl" showDetail="true" sticky="true" />
 
@@ -25,7 +39,8 @@
 				required="true" />
 
 			<p:outputLabel value="Professor: " />
-			<p:selectOneMenu value="#{disciplinaBean.disciplina.prof.id}" required="true">
+			<p:selectOneMenu value="#{disciplinaBean.disciplina.prof.id}"
+				required="true">
 				<f:selectItems var="prof" value="#{professorBean.profs}"
 					itemLabel="#{prof.nome}" itemValue="#{prof.id}">
 				</f:selectItems>

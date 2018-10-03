@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -62,6 +63,7 @@ public class Disciplina implements Identificavel {
 	public Disciplina() {
 		super();
 		prof = new Professor();
+		alunos = new HashSet<Aluno>();
 	}
 
 	private String nome;
