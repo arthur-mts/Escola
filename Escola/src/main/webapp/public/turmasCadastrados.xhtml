@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+<h:head>
+	<title>Escola</title>
+</h:head>
+
+<h:body>
+	<h:form id="form">
+		<p:growl id="growl" showDetail="true" sticky="true" />
+		<p:megaMenu orientation="horizontal" style="margin-top:20px">
+			<p:submenu label="Cadastro" icon="ui-icon-disk">
+				<p:column>
+					<p:submenu>
+						<p:menuitem icon="ui-icon-disk" value="Create Prof"
+							url="createProf.xhtml" />
+						<p:menuitem icon="ui-icon-disk" value="Create Aluno"
+							url="createAluno.xhtml" />
+						<p:menuitem icon="ui-icon-disk" value="Create Disc"
+							url="createDisc.xhtml" />
+						<p:menuitem icon="ui-icon-disk" value="Create Turma"
+							url="createTurma.xhtml" />
+						<p:menuitem icon="ui-icon-disk" value="Mat disciplina"
+							url="matriculaDisciplina.xhtml" />
+						<p:menuitem icon="ui-icon-search" value="Alunos cadastrados"
+							url="alunosCadastrados.xhtml" />
+					</p:submenu>
+
+
+				</p:column>
+
+			</p:submenu>
+
+		</p:megaMenu>
+
+		<h1>Turmas cadastrados</h1>
+
+		<p:carousel value="#{turmaBean.turmas}" id="turmaCarousel" var="turma"
+			headerText="Turmas cadastradas" itemStyle="text-align:center"
+			styleClass="ui-panelgrid-blank">
+			<p:panelGrid columns="2" style="width:100%;margin:10px 0px"
+				columnClasses="label, value">
+
+				<f:facet name="header">#{turma.nome}</f:facet>
+
+				<h:outputText value="Decricao: " />
+				<h:outputText value="#{turma.descricao}" />
+
+				<h:outputText value="Qnt. de alunos matriculados: " />
+				<h:outputText value="#{turma.alunos.size()}" />
+
+				<h:outputText value="Alunos cadastrados: " />
+				<p:commandButton update="form" value="Visualizar"
+					oncomplete="PF('turmaDialog').show()" icon="ui-icon-search">
+					<f:setPropertyActionListener value="#{turma}"
+						target="#{turmaBean.turmaSelecionada}" />
+				</p:commandButton>
+			</p:panelGrid>
+		</p:carousel>
+
+
+
+		<p:dialog widgetVar="turmaDialog" resizable="false" modal="true"
+			header="Alunos da turma #{turmaBean.turmaSelecionada.nome}">
+			<p:outputPanel id="turmaDialogPanel" style="text-align:center;">
+
+				<p:dataTable var="alunoMatriculado"
+					value="#{turmaBean.turmaSelecionada.alunos}"
+					emptyMessage="Sem alunos cadastrados">
+
+					<p:column headerText="Nome">
+						<h:outputText value="#{alunoMatriculado.nome}" />
+					</p:column>
+
+
+					<p:column headerText="ID">
+						<h:outputText value="#{alunoMatriculado.id}" />
+					</p:column>
+				</p:dataTable>
+			</p:outputPanel>
+		</p:dialog>
+	</h:form>
+</h:body>
+</html>

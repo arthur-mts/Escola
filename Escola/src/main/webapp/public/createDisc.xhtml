@@ -9,20 +9,30 @@
 </h:head>
 
 <h:body>
-	<p:tabMenu>
-		<p:menuitem icon="ui-icon-disk" value="Create Prof"
-			url="createProf.xhtml" />
-		<p:menuitem icon="ui-icon-disk" value="Create Aluno"
-			url="createAluno.xhtml" />
-		<p:menuitem icon="ui-icon-disk" value="Create Disc"
-			url="createDisc.xhtml" />
-		<p:menuitem icon="ui-icon-disk" value="Create Turma"
-			url="createTurma.xhtml" />
-		<p:menuitem icon="ui-icon-disk" value="Mat disciplina"
-			url="matriculaDisciplina.xhtml" />
+	<p:megaMenu orientation="horizontal" style="margin-top:20px">
+		<p:submenu label="Cadastro" icon="ui-icon-disk">
+			<p:column>
+				<p:submenu>
+					<p:menuitem icon="ui-icon-disk" value="Create Prof"
+						url="createProf.xhtml" />
+					<p:menuitem icon="ui-icon-disk" value="Create Aluno"
+						url="createAluno.xhtml" />
+					<p:menuitem icon="ui-icon-disk" value="Create Disc"
+						url="createDisc.xhtml" />
+					<p:menuitem icon="ui-icon-disk" value="Create Turma"
+						url="createTurma.xhtml" />
+					<p:menuitem icon="ui-icon-disk" value="Mat disciplina"
+						url="matriculaDisciplina.xhtml" />
+					<p:menuitem icon="ui-icon-search" value="Alunos cadastrados"
+						url="alunosCadastrados.xhtml" />
+				</p:submenu>
 
 
-	</p:tabMenu>
+			</p:column>
+
+		</p:submenu>
+
+	</p:megaMenu>
 	<h1>Cadastro de Disciplinas</h1>
 	<h:form id="form">
 		<p:growl id="growl" showDetail="true" sticky="true" />

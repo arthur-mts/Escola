@@ -12,20 +12,31 @@
 
 
 <h:body>
-	<p:tabMenu>
-		<p:menuitem icon="ui-icon-disk" value="Create Prof"
-			url="public/createProf.xhtml" />
-		<p:menuitem icon="ui-icon-disk" value="Create Aluno"
-			url="public/createAluno.xhtml" />
-		<p:menuitem icon="ui-icon-disk" value="Create Disc"
-			url="public/createDisc.xhtml" />
-		<p:menuitem icon="ui-icon-disk" value="Create Turma"
-			url="public/createTurma.xhtml" />
-		<p:menuitem icon="ui-icon-disk" value="Mat disciplina"
-			url="public/createTurma.xhtml" />
+	<p:megaMenu orientation="horizontal" style="margin-top:20px">
+			<p:submenu label="Cadastro" icon="ui-icon-disk">
+				<p:column>
+					<p:submenu>
+						<p:menuitem icon="ui-icon-disk" value="Create Prof"
+							url="createProf.xhtml" />
+						<p:menuitem icon="ui-icon-disk" value="Create Aluno"
+							url="createAluno.xhtml" />
+						<p:menuitem icon="ui-icon-disk" value="Create Disc"
+							url="createDisc.xhtml" />
+						<p:menuitem icon="ui-icon-disk" value="Create Turma"
+							url="createTurma.xhtml" />
+						<p:menuitem icon="ui-icon-disk" value="Mat disciplina"
+							url="matriculaDisciplina.xhtml" />
+						<p:menuitem icon="ui-icon-search" value="Alunos cadastrados"
+							url="alunosCadastrados.xhtml" />
+					</p:submenu>
 
 
-	</p:tabMenu>
+				</p:column>
+
+			</p:submenu>
+
+		</p:megaMenu>
+
 	<p:messages />
 	<p:panel header="Login"
 		style="width: 30%; text-align:center; margin: auto;">

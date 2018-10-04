@@ -5,12 +5,17 @@ import java.util.Collection;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.PrimeFaces;
+import org.primefaces.event.RowEditEvent;
 
 import entities.Aluno;
 import services.AlunoService;
+
 @SessionScoped
 @Named
 public class AlunoBean implements Serializable {
@@ -27,7 +32,20 @@ public class AlunoBean implements Serializable {
 	private void init() {
 		setAlunos(service.getAll());
 	}
-	
+
+	public void onRowEdit(Aluno obj) {
+		service.update(obj);
+		FacesMessage msg = new FacesMessage("Aluno editado", obj.getNome());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+		limpar();
+	}
+
+	private void limpar() {
+		aluno = new Aluno();
+		setAlunos(getService().getAll());
+
+	}
+
 	public void salvarAluno() {
 		service.save(aluno);
 		aluno = new Aluno();

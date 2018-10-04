@@ -4,12 +4,15 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+
 <h:head>
 	<title>Escola</title>
 </h:head>
 
 <h:body>
-	<p:megaMenu orientation="horizontal" style="margin-top:20px">
+	<h:form id="form">
+		<p:growl id="growl" showDetail="true" sticky="true" />
+		<p:megaMenu orientation="horizontal" style="margin-top:20px">
 			<p:submenu label="Cadastro" icon="ui-icon-disk">
 				<p:column>
 					<p:submenu>
@@ -34,24 +37,42 @@
 
 		</p:megaMenu>
 
-	<h1>Cadastro de Alunos</h1>
-	<h:form id="form">
-		<p:growl id="growl" showDetail="true" sticky="true" />
 
-		<p:panelGrid style="margin-botton:20px" columns="2" layout="grid">
-			<p:outputLabel value="Nome do aluno:" />
-			<p:inputText id="nomeAluno" label="nome"
-				value="#{alunoBean.aluno.nome}" style="width:350px" required="true" />
+		<h1>Alunos cadastrados</h1>
 
-			<p:outputLabel value="Data de nascimento:" />
-			<p:inputMask id="nascAluno" label="nasc" mask="99/99/9999"
-				value="#{alunoBean.aluno.dataDeNasc}" style="width:350px"
-				required="true" />
-		</p:panelGrid>
+		<f:facet name="header"> Alunos</f:facet>
+		<p:dataTable var="aluno" value="#{alunoBean.alunos}"
+			emptyMessage="Sem alunos cadastrados!" editable="true">
+			<f:facet name="header"> Alunos Cadastrados</f:facet>
+			<p:ajax event="rowEdit" listener="#{alunoBean.onRowEdit(aluno)}"
+				update=":form:growl"/>
 
-		<p:commandButton value="Salvar Aluno" update="growl: form"
-			action="#{alunoBean.salvarAluno()}">
-		</p:commandButton>
+			<p:column headerText="ID" sortable="true" sortBy="#{aluno.id}">
+				<h:outputText value="#{aluno.id}" />
+			</p:column>
+
+			<p:column headerText="Nome">
+
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{aluno.nome}" />
+					</f:facet>
+
+					<f:facet name="input">
+						<h:inputText value="#{aluno.nome}" style="width:100%" />
+					</f:facet>
+
+				</p:cellEditor>
+			</p:column>
+
+			<p:column style="width:32px">
+				<p:rowEditor />
+			</p:column>
+
+
+
+		</p:dataTable>
+
 
 	</h:form>
 </h:body>

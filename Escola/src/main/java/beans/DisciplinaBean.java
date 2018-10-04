@@ -60,6 +60,7 @@ public class DisciplinaBean implements Serializable {
 		ArrayList<Aluno> alunosSource = new ArrayList<Aluno>();
 		ArrayList<Aluno> alunosTarget = new ArrayList<Aluno>();
 		alunosSource.addAll(getAlunoService().getAll());
+		alunosSource.removeAll(discMatriculaAluno.getAlunos());
 		alunosTarget.addAll(discMatriculaAluno.getAlunos());
 		setPickListAluno(new DualListModel<Aluno>(alunosSource, alunosTarget));
 	}
@@ -69,11 +70,9 @@ public class DisciplinaBean implements Serializable {
 		alunosDiscSelecionada.addAll(getPickListAluno().getTarget());
 		discMatriculaAluno.getAlunos().addAll(alunosDiscSelecionada);
 		service.update(discMatriculaAluno);
-		
 		limpar();
 		PrimeFaces.current().ajax().update("form");
 		setRenderPanelCadastro(false);
-
 	}
 
 	public void salvarDisc() {

@@ -27,6 +27,7 @@ public class TurmaBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private Turma turmaSelecionada = new Turma();
 	@Inject
 	private AlunoService alunoService;
 
@@ -122,5 +123,12 @@ public class TurmaBean implements Serializable {
 		this.alunos = alunos;
 	}
 
+	public Turma getTurmaSelecionada() {
+		return turmaSelecionada;
+	}
+
+	public void setTurmaSelecionada(Turma turmaSelecionada) {
+		this.turmaSelecionada = turmaSelecionada;
+	}
+
 }
-	
