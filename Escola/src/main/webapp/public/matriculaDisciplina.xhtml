@@ -11,30 +11,41 @@
 
 <h:body>
 	<p:megaMenu orientation="horizontal" style="margin-top:20px">
-			<p:submenu label="Cadastro" icon="ui-icon-disk">
-				<p:column>
-					<p:submenu>
-						<p:menuitem icon="ui-icon-disk" value="Create Prof"
-							url="createProf.xhtml" />
-						<p:menuitem icon="ui-icon-disk" value="Create Aluno"
-							url="createAluno.xhtml" />
-						<p:menuitem icon="ui-icon-disk" value="Create Disc"
-							url="createDisc.xhtml" />
-						<p:menuitem icon="ui-icon-disk" value="Create Turma"
-							url="createTurma.xhtml" />
-						<p:menuitem icon="ui-icon-disk" value="Mat disciplina"
-							url="matriculaDisciplina.xhtml" />
-						<p:menuitem icon="ui-icon-search" value="Alunos cadastrados"
-							url="alunosCadastrados.xhtml" />
-					</p:submenu>
+		<p:submenu label="Cadastro" icon="ui-icon-disk">
+			<p:column>
+				<p:submenu label="Cadastros de entidadaes">
+					<p:menuitem icon="ui-icon-disk" value="Create Prof"
+						url="createProf.xhtml" />
+					<p:menuitem icon="ui-icon-disk" value="Create Aluno"
+						url="createAluno.xhtml" />
+					<p:menuitem icon="ui-icon-disk" value="Create Disc"
+						url="createDisc.xhtml" />
+					<p:menuitem icon="ui-icon-disk" value="Create Turma"
+						url="createTurma.xhtml" />
+					<p:menuitem icon="ui-icon-disk" value="Mat disciplina"
+						url="matriculaDisciplina.xhtml" />
 
+				</p:submenu>
 
-				</p:column>
+			</p:column>
 
-			</p:submenu>
+		</p:submenu>
+		<p:submenu label="Visualizar" icon="ui-icon-search">
+			<p:column>
+				<p:submenu label="Visualizar entidades">
+					<p:menuitem icon="ui-icon-search" value="Alunos cadastrados"
+						url="alunosCadastrados.xhtml" />
+					<p:menuitem icon="ui-icon-search" value="Turmas cadastradas"
+						url="turmasCadastradas.xhtml" />
+					<p:menuitem icon="ui-icon-search" value="Profs. cadastrados"
+						url="professoresCadastrados.xhtml" />
+				</p:submenu>
 
-		</p:megaMenu>
+			</p:column>
 
+		</p:submenu>
+
+	</p:megaMenu>
 	<h:form id="form">
 		<p:growl id="growl" showDetail="true" sticky="true" />
 		<p:messages>
@@ -73,6 +84,9 @@
 					<f:setPropertyActionListener value="#{true}"
 						target="#{disciplinaBean.renderPanelCadastro}" />
 				</p:commandButton>
+				
+				<h:outputText value="Remover disciplina: "/>
+				<p:commandButton value="Remover" update="form" action="#{disciplinaBean.removerDisciplina(disc)}"/>
 
 			</p:panelGrid>
 		</p:carousel>
@@ -108,7 +122,7 @@
 				removeAllLabel="Remover todos" removeLabel="Remover"
 				converter="alunoPickListConverter" required="true"
 				requiredMessage="Selecione ao menos um aluno!">
-				
+
 				<f:facet name="sourceCaption">Todos os alunos</f:facet>
 				<f:facet name="targetCaption">Alunos cadastrados</f:facet>
 			</p:pickList>

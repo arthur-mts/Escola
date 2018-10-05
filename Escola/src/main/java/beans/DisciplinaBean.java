@@ -8,7 +8,9 @@ import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -55,12 +57,20 @@ public class DisciplinaBean implements Serializable {
 		discMatriculaAluno = new Disciplina();
 		setPickListAluno(new DualListModel<Aluno>(new ArrayList<Aluno>(), new ArrayList<Aluno>()));
 	}
+	
+	public void removerDisciplina(Disciplina d) {
+		service.remove(d);
+		limpar();
+	}
 
 	public void iniciarPickListAluno() {
 		ArrayList<Aluno> alunosSource = new ArrayList<Aluno>();
 		ArrayList<Aluno> alunosTarget = new ArrayList<Aluno>();
 		alunosSource.addAll(getAlunoService().getAll());
 		alunosSource.removeAll(discMatriculaAluno.getAlunos());
+		if (alunosSource.equals(getAlunoService().getAll())) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("DEU ERRO CACHORRO", "AS LISTAAS SAO IGUAIS"));
+		}
 		alunosTarget.addAll(discMatriculaAluno.getAlunos());
 		setPickListAluno(new DualListModel<Aluno>(alunosSource, alunosTarget));
 	}
@@ -72,6 +82,7 @@ public class DisciplinaBean implements Serializable {
 		service.update(discMatriculaAluno);
 		limpar();
 		PrimeFaces.current().ajax().update("form");
+		setPickListAluno(new DualListModel<Aluno>());
 		setRenderPanelCadastro(false);
 	}
 

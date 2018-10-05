@@ -15,7 +15,7 @@
 		<p:megaMenu orientation="horizontal" style="margin-top:20px">
 			<p:submenu label="Cadastro" icon="ui-icon-disk">
 				<p:column>
-					<p:submenu>
+					<p:submenu label="Cadastros de entidadaes">
 						<p:menuitem icon="ui-icon-disk" value="Create Prof"
 							url="createProf.xhtml" />
 						<p:menuitem icon="ui-icon-disk" value="Create Aluno"
@@ -26,10 +26,22 @@
 							url="createTurma.xhtml" />
 						<p:menuitem icon="ui-icon-disk" value="Mat disciplina"
 							url="matriculaDisciplina.xhtml" />
-						<p:menuitem icon="ui-icon-search" value="Alunos cadastrados"
-							url="alunosCadastrados.xhtml" />
+
 					</p:submenu>
 
+				</p:column>
+
+			</p:submenu>
+			<p:submenu label="Visualizar" icon="ui-icon-search">
+				<p:column>
+					<p:submenu label="Visualizar entidades">
+						<p:menuitem icon="ui-icon-search" value="Alunos cadastrados"
+							url="alunosCadastrados.xhtml" />
+						<p:menuitem icon="ui-icon-search" value="Turmas cadastradas"
+							url="turmasCadastradas.xhtml" />
+						<p:menuitem icon="ui-icon-search" value="Profs. cadastrados"
+							url="professoresCadastrados.xhtml" />
+					</p:submenu>
 
 				</p:column>
 
@@ -43,9 +55,10 @@
 		<f:facet name="header"> Alunos</f:facet>
 		<p:dataTable var="aluno" value="#{alunoBean.alunos}"
 			emptyMessage="Sem alunos cadastrados!" editable="true">
+
 			<f:facet name="header"> Alunos Cadastrados</f:facet>
 			<p:ajax event="rowEdit" listener="#{alunoBean.onRowEdit(aluno)}"
-				update=":form:growl"/>
+				update=":form:growl" />
 
 			<p:column headerText="ID" sortable="true" sortBy="#{aluno.id}">
 				<h:outputText value="#{aluno.id}" />
@@ -67,6 +80,10 @@
 
 			<p:column style="width:32px">
 				<p:rowEditor />
+			</p:column>
+
+			<p:column style="width:120px">
+				<p:commandButton value="Remover" update="form" action="#{alunoBean.removerAluno(aluno)}"/>
 			</p:column>
 
 

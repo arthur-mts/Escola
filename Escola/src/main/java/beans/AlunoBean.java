@@ -46,9 +46,14 @@ public class AlunoBean implements Serializable {
 
 	}
 
+	public void removerAluno(Aluno a) {
+		service.remove(a);
+		limpar();
+	}
+
 	public void salvarAluno() {
 		service.save(aluno);
-		aluno = new Aluno();
+		limpar();
 
 	}
 

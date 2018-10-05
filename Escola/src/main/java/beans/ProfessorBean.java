@@ -44,6 +44,18 @@ public class ProfessorBean implements Serializable {
 		professor = new Professor();
 		profs = getService().getAll();
 	}
+	
+	public void onRowEdit (Professor p) {
+		service.update(p);
+		FacesMessage msg = new FacesMessage("Professor editado", p.getNome());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+		limpar();
+	}
+	
+	public void removerProf(Professor p) {
+		service.remove(p);
+		limpar();
+	}
 
 	public void salvarProf() {
 		if (!professor.getSenha().equals(confirmSenha)) {
