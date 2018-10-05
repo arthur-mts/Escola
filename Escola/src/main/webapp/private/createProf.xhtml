@@ -9,6 +9,16 @@
 </h:head>
 
 <h:body>
+	<h:form id="formMenu">
+		<p:menubar>
+			<f:facet name="options">
+						Olá, #{professorBean.userLogin}
+						<p:commandButton id="menuItemLogout" value="Logout"
+					icon="fa fa-fw fa-sign-out"
+					action="#{professorBean.efetuarLogout()}" ajax="false" />
+			</f:facet>
+		</p:menubar>
+	</h:form>
 	<p:megaMenu orientation="horizontal" style="margin-top:20px">
 		<p:submenu label="Cadastro" icon="ui-icon-disk">
 			<p:column>
