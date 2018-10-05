@@ -15,7 +15,8 @@
 		<p:megaMenu orientation="horizontal" style="margin-top:20px">
 			<p:submenu label="Cadastro" icon="ui-icon-disk">
 				<p:column>
-					<p:submenu label="Cadastros de entidadaes">
+					<p:submenu label="Cadastros de entidadaes"
+						rendered="#{professorBean.isUserInRole('PROF')}">
 						<p:menuitem icon="ui-icon-disk" value="Create Prof"
 							url="createProf.xhtml" />
 						<p:menuitem icon="ui-icon-disk" value="Create Aluno"
@@ -82,9 +83,10 @@
 					<f:setPropertyActionListener value="#{turma}"
 						target="#{turmaBean.turmaSelecionada}" />
 				</p:commandButton>
-				
-				<h:outputText value="Remover turma: "/>
-				<p:commandButton value="Remover" action="#{turmaBean.removerTurma(turma)}" update="form"/>
+
+				<h:outputText value="Remover turma: " />
+				<p:commandButton value="Remover"
+					action="#{turmaBean.removerTurma(turma)}" update="form" />
 			</p:panelGrid>
 		</p:carousel>
 

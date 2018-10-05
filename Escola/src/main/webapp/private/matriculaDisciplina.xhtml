@@ -13,7 +13,7 @@
 	<p:megaMenu orientation="horizontal" style="margin-top:20px">
 		<p:submenu label="Cadastro" icon="ui-icon-disk">
 			<p:column>
-				<p:submenu label="Cadastros de entidadaes">
+				<p:submenu label="Cadastros de entidadaes" rendered="#{professorBean.isUserInRole('PROF')}">
 					<p:menuitem icon="ui-icon-disk" value="Create Prof"
 						url="createProf.xhtml" />
 					<p:menuitem icon="ui-icon-disk" value="Create Aluno"

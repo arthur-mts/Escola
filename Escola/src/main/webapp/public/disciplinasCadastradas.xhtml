@@ -4,15 +4,17 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+
 <h:head>
 	<title>Escola</title>
 </h:head>
 
 <h:body>
+<h1>Disciplinas cadastradas</h1>
 	<p:megaMenu orientation="horizontal" style="margin-top:20px">
 		<p:submenu label="Cadastro" icon="ui-icon-disk">
 			<p:column>
-				<p:submenu label="Cadastros de entidadaes">
+				<p:submenu label="Cadastros de entidadaes" rendered="#{professorBean.isUserInRole('PROF')}">
 					<p:menuitem icon="ui-icon-disk" value="Create Prof"
 						url="createProf.xhtml" />
 					<p:menuitem icon="ui-icon-disk" value="Create Aluno"
@@ -45,35 +47,37 @@
 		</p:submenu>
 
 	</p:megaMenu>
-	<h1>Cadastro de Disciplinas</h1>
 	<h:form id="form">
 		<p:growl id="growl" showDetail="true" sticky="true" />
+		<p:messages>
+		</p:messages>
+		<p:carousel headerText="Disciplinas"
+			value="#{disciplinaBean.disciplinas}" var="disc"
+			itemStyle="text-align:center" styleClass="ui-panelgrid-blank"
+			circular="true">
+			<p:panelGrid columns="2" style="width:100%;margin:10px 0px"
+				columnClasses="label, value">
 
-		<p:panelGrid style="margin-botton:20px" columns="2" layout="grid">
-			<p:outputLabel value="Nome da disciplina:" />
-			<p:inputText id="nomeDisc" label="nome"
-				value="#{disciplinaBean.disciplina.nome}" style="width:350px"
-				required="true" />
+				<f:facet name="header">#{disc.nome}</f:facet>
 
-			<p:outputLabel value="Descricao: " />
-			<p:inputText id="descriDis" label="descr"
-				value="#{disciplinaBean.disciplina.descri}" style="width:350px"
-				required="true" />
 
-			<p:outputLabel value="Professor: " />
-			<p:selectOneMenu value="#{disciplinaBean.disciplina.prof.id}"
-				required="true">
-				<f:selectItems var="prof" value="#{professorBean.profs}"
-					itemLabel="#{prof.nome}" itemValue="#{prof.id}">
-				</f:selectItems>
-			</p:selectOneMenu>
+				<h:outputText value="Descricao: " />
+				<h:outputText value="#{disc.descri}" />
 
-		</p:panelGrid>
+				<h:outputText value="Qnt. de alunos matriculados: " />
+				<h:outputText value="#{disc.alunos.size()}" />
 
-		<p:commandButton value="Salvar Disciplina" update="growl: form"
-			action="#{disciplinaBean.salvarDisc()}">
-		</p:commandButton>
+				<h:outputText value="Professor: " />
+				<h:outputText value="#{disc.prof.nome}" />
+
+
+			</p:panelGrid>
+		</p:carousel>
+
+
 
 	</h:form>
+
+
 </h:body>
 </html>

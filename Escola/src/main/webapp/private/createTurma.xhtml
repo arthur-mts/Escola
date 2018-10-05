@@ -12,7 +12,7 @@
 	<p:megaMenu orientation="horizontal" style="margin-top:20px">
 		<p:submenu label="Cadastro" icon="ui-icon-disk">
 			<p:column>
-				<p:submenu label="Cadastros de entidadaes">
+				<p:submenu label="Cadastros de entidadaes" rendered="#{professorBean.isUserInRole('PROF')}">
 					<p:menuitem icon="ui-icon-disk" value="Create Prof"
 						url="createProf.xhtml" />
 					<p:menuitem icon="ui-icon-disk" value="Create Aluno"
@@ -46,36 +46,33 @@
 
 	</p:megaMenu>
 
-	<h1>Cadastro de professores</h1>
+	<h1>Cadastro de turmas</h1>
 	<h:form id="form">
 		<p:growl id="growl" showDetail="true" sticky="true" />
 		<p:panelGrid style="margin-botton:20px" columns="2" layout="grid">
 
-			<p:outputLabel value="Nome do professor:" />
-			<p:inputText id="nomeProf" label="nome" required="true"
-				value="#{professorBean.professor.nome}" style="width:350px" />
+			<p:outputLabel value="Nome da turma:" />
+			<p:inputText id="nomeTurma" label="nome" required="true"
+				value="#{turmaBean.turma.nome}" style="width:350px" />
 
-			<p:outputLabel value="Especialização:" />
-			<p:inputText id="espProf" label="esp"
-				value="#{professorBean.professor.especializacao}"
-				style="width:350px" />
+			<p:outputLabel value="Descricao: " />
+			<p:inputText id="descTurma" label="dsc"
+				value="#{turmaBean.turma.descricao}" style="width:350px"
+				required="true" />
 
-			<p:outputLabel value="Login: " />
-			<p:inputText id="loginProf" label="login" required="true"
-				value="#{professorBean.professor.login}" />
+			<p:outputLabel value="Selecione os alunos da turma: " />
+			<p:selectManyMenu id="alunos" value="#{turmaBean.selectIdAlunos}"
+				filter="true" filterMatchMode="contains" required="true"
+				showCheckbox="true">
+				<f:selectItems value="#{turmaBean.alunos}" var="aluno"
+					itemLabel="#{aluno.nome}" itemValue="#{aluno.id}"></f:selectItems>
+			</p:selectManyMenu>
 
-			<p:outputLabel value="Senha: " />
-			<p:password required="true" id="passwd"
-				value="#{professorBean.professor.senha}" />
-
-			<p:outputLabel value="Confirme sua senha: " />
-			<p:password required="true" id="confirmPasswd"
-				value="#{professorBean.confirmSenha}" />
 		</p:panelGrid>
 
 
-		<p:commandButton value="Salvar prof." update="growl: form"
-			action="#{professorBean.salvarProf()}">
+		<p:commandButton value="Salvar turma." update="growl: form"
+			action="#{turmaBean.salvarTurma()}">
 		</p:commandButton>
 
 	</h:form>

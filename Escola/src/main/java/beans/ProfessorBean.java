@@ -1,15 +1,21 @@
 package beans;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.security.Principal;
 import java.util.Collection;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import entities.Professor;
 import services.ProfessorService;
@@ -39,19 +45,45 @@ public class ProfessorBean implements Serializable {
 	public void init() {
 		limpar();
 	}
-	
+
 	public void limpar() {
 		professor = new Professor();
 		profs = getService().getAll();
 	}
-	
-	public void onRowEdit (Professor p) {
+
+	public void onRowEdit(Professor p) {
 		service.update(p);
 		FacesMessage msg = new FacesMessage("Professor editado", p.getNome());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		limpar();
 	}
-	
+
+	public String getUserLogin() {
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = facesContext.getExternalContext();
+		Principal userPrincipal = externalContext.getUserPrincipal();
+		if (userPrincipal == null) {
+			return "";
+		}
+		return userPrincipal.getName();
+	}
+
+	public void efetuarLogout() throws IOException, ServletException {
+		FacesContext fc = FacesContext.getCurrentInstance();
+		ExternalContext ec = fc.getExternalContext();
+		HttpSession session = (HttpSession) ec.getSession(false);
+		session.invalidate();
+		HttpServletRequest request = (HttpServletRequest) ec.getRequest();
+		request.logout();
+		ec.redirect(ec.getApplicationContextPath());
+	}
+
+	public boolean isUserInRole(String role) {
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = facesContext.getExternalContext();
+		return externalContext.isUserInRole(role);
+	}
+
 	public void removerProf(Professor p) {
 		service.remove(p);
 		limpar();
