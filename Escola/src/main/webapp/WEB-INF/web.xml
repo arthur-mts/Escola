@@ -39,13 +39,13 @@
 		</web-resource-collection>
 		<auth-constraint>
 			<description />
-			<role-name>PROFESSOR</role-name>
+			<role-name>PROF</role-name>
 		</auth-constraint>
 		<user-data-constraint>
 			<transport-guarantee>NONE</transport-guarantee>
 		</user-data-constraint>
 	</security-constraint>
 	<security-role>
-		<role-name>PROFESSOR</role-name>
+		<role-name>PROF</role-name>
 	</security-role>
 </web-app>
