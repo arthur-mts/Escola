@@ -10,8 +10,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.primefaces.PrimeFaces;
-import org.primefaces.event.RowEditEvent;
 
 import entities.Aluno;
 import services.AlunoService;

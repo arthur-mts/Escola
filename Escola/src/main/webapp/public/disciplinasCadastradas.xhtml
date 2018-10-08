@@ -6,15 +6,14 @@
 
 
 <h:head>
-	<title>Escola</title>
+	<title>Disciplinas</title>
 </h:head>
 
 <h:body>
-	<h1>Disciplinas cadastradas</h1>
 	<h:form id="formMenu">
 		<p:menubar>
 			<f:facet name="options">
-						Olá, #{professorBean.userLogin}
+						#{professorBean.userLogin}
 						<p:commandButton id="menuItemLogout" value="Logout"
 					icon="fa fa-fw fa-sign-out"
 					action="#{professorBean.efetuarLogout()}" ajax="false" />
@@ -61,6 +60,7 @@
 		</p:submenu>
 
 	</p:megaMenu>
+
 	<h:form id="form">
 		<p:growl id="growl" showDetail="true" sticky="true" />
 		<p:messages>

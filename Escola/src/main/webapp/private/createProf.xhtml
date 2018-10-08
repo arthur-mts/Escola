@@ -5,14 +5,14 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-	<title>Escola</title>
+	<title>Cadastro de professores</title>
 </h:head>
 
 <h:body>
 	<h:form id="formMenu">
 		<p:menubar>
 			<f:facet name="options">
-						Olá, #{professorBean.userLogin}
+						#{professorBean.userLogin}
 						<p:commandButton id="menuItemLogout" value="Logout"
 					icon="fa fa-fw fa-sign-out"
 					action="#{professorBean.efetuarLogout()}" ajax="false" />
@@ -60,7 +60,7 @@
 
 	</p:megaMenu>
 
-	<h1>Cadastro de professores</h1>
+
 	<h:form id="form">
 		<p:growl id="growl" showDetail="true" sticky="true" />
 		<p:panelGrid style="margin-botton:20px" columns="2" layout="grid">

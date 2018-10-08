@@ -5,61 +5,66 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-	<title>Escola</title>
+	<title>Cadastro de disciplinas</title>
 </h:head>
 
 <h:body>
 	<h:form id="formMenu">
 		<p:menubar>
 			<f:facet name="options">
-						Olá, #{professorBean.userLogin}
+						#{professorBean.userLogin}
 						<p:commandButton id="menuItemLogout" value="Logout"
 					icon="fa fa-fw fa-sign-out"
 					action="#{professorBean.efetuarLogout()}" ajax="false" />
 			</f:facet>
 		</p:menubar>
+
+		<p:megaMenu orientation="horizontal" style="margin-top:20px">
+			<p:submenu label="Cadastro" icon="ui-icon-disk"
+				rendered="#{professorBean.isUserInRole('PROF')}">
+				<p:column>
+					<p:submenu label="Cadastros de entidadaes">
+						<p:menuitem icon="ui-icon-disk" value="Create Prof"
+							url="/private/createProf.xhtml" />
+						<p:menuitem icon="ui-icon-disk" value="Create Aluno"
+							url="/private/createAluno.xhtml" />
+						<p:menuitem icon="ui-icon-disk" value="Create Disc"
+							url="/private/createDisc.xhtml" />
+						<p:menuitem icon="ui-icon-disk" value="Create Turma"
+							url="/private/createTurma.xhtml" />
+						<p:menuitem icon="ui-icon-disk" value="Mat disciplina"
+							url="/private/matriculaDisciplina.xhtml" />
+
+					</p:submenu>
+
+				</p:column>
+
+			</p:submenu>
+			<p:submenu label="Visualizar" icon="ui-icon-search">
+				<p:column>
+					<p:submenu label="Visualizar entidades">
+						<p:menuitem icon="ui-icon-search" value="Alunos cadastrados"
+							url="/private/alunosCadastrados.xhtml"
+							rendered="#{professorBean.isUserInRole('PROF')}" />
+						<p:menuitem icon="ui-icon-search" value="Turmas cadastradas"
+							url="/public/turmasCadastradas.xhtml" />
+						<p:menuitem icon="ui-icon-search" value="Profs. cadastrados"
+							url="/public/professoresCadastrados.xhtml" />
+						<p:menuitem icon="ui-icon-search" value="Disc. cadastrados"
+							url="/public/disciplinasCadastradas.xhtml	" />
+					</p:submenu>
+
+				</p:column>
+
+			</p:submenu>
+			<f:facet name="options">
+				<p:menuitem value="#{professorBean.userLogin}" />
+
+			</f:facet>
+
+		</p:megaMenu>
 	</h:form>
-	<p:megaMenu orientation="horizontal" style="margin-top:20px">
-		<p:submenu label="Cadastro" icon="ui-icon-disk"
-			rendered="#{professorBean.isUserInRole('PROF')}">
-			<p:column>
-				<p:submenu label="Cadastros de entidadaes">
-					<p:menuitem icon="ui-icon-disk" value="Create Prof"
-						url="/private/createProf.xhtml" />
-					<p:menuitem icon="ui-icon-disk" value="Create Aluno"
-						url="/private/createAluno.xhtml" />
-					<p:menuitem icon="ui-icon-disk" value="Create Disc"
-						url="/private/createDisc.xhtml" />
-					<p:menuitem icon="ui-icon-disk" value="Create Turma"
-						url="/private/createTurma.xhtml" />
-					<p:menuitem icon="ui-icon-disk" value="Mat disciplina"
-						url="/private/matriculaDisciplina.xhtml" />
 
-				</p:submenu>
-
-			</p:column>
-
-		</p:submenu>
-		<p:submenu label="Visualizar" icon="ui-icon-search">
-			<p:column>
-				<p:submenu label="Visualizar entidades">
-					<p:menuitem icon="ui-icon-search" value="Alunos cadastrados"
-						url="/private/alunosCadastrados.xhtml"
-						rendered="#{professorBean.isUserInRole('PROF')}" />
-					<p:menuitem icon="ui-icon-search" value="Turmas cadastradas"
-						url="/public/turmasCadastradas.xhtml" />
-					<p:menuitem icon="ui-icon-search" value="Profs. cadastrados"
-						url="/public/professoresCadastrados.xhtml" />
-					<p:menuitem icon="ui-icon-search" value="Disc. cadastrados"
-						url="/public/disciplinasCadastradas.xhtml	" />
-				</p:submenu>
-
-			</p:column>
-
-		</p:submenu>
-
-	</p:megaMenu>
-	<h1>Cadastro de Disciplinas</h1>
 	<h:form id="form">
 		<p:growl id="growl" showDetail="true" sticky="true" />
 

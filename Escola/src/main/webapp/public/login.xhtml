@@ -12,11 +12,11 @@
 
 
 <h:body>
-	
+
 	<h:form id="formMenu">
 		<p:menubar>
 			<f:facet name="options">
-						Olá, #{professorBean.userLogin}
+						#{professorBean.userLogin}
 						<p:commandButton id="menuItemLogout" value="Logout"
 					icon="fa fa-fw fa-sign-out"
 					action="#{professorBean.efetuarLogout()}" ajax="false" />
@@ -72,7 +72,7 @@
 			prependId="false">
 			<h:panelGrid columns="2" style="text-align:center; margin: auto;">
 				<h:outputLabel for="j_username" value="Login:" />
-				<h:inputText id="j_username" name="j_username"	 />
+				<h:inputText id="j_username" name="j_username" />
 
 				<h:outputLabel for="j_password" value="Senha:" />
 				<h:inputSecret id="j_password" name="j_password" />

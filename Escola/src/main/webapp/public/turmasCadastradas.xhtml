@@ -6,14 +6,14 @@
 
 
 <h:head>
-	<title>Escola</title>
+	<title>Turmas</title>
 </h:head>
 
 <h:body>
 	<h:form id="formMenu">
 		<p:menubar>
 			<f:facet name="options">
-						Olá, #{professorBean.userLogin}
+					#{professorBean.userLogin}
 						<p:commandButton id="menuItemLogout" value="Logout"
 					icon="fa fa-fw fa-sign-out"
 					action="#{professorBean.efetuarLogout()}" ajax="false" />
@@ -63,7 +63,6 @@
 
 		</p:megaMenu>
 
-		<h1>Turmas cadastrados</h1>
 
 		<p:carousel value="#{turmaBean.turmas}" id="turmaCarousel" var="turma"
 			headerText="Turmas cadastradas" itemStyle="text-align:center"

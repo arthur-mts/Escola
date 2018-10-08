@@ -13,7 +13,7 @@
 	<h:form id="formMenu">
 		<p:menubar>
 			<f:facet name="options">
-						Olá, #{professorBean.userLogin}
+						#{professorBean.userLogin}
 						<p:commandButton id="menuItemLogout" value="Logout"
 					icon="fa fa-fw fa-sign-out"
 					action="#{professorBean.efetuarLogout()}" ajax="false" />
@@ -21,19 +21,20 @@
 		</p:menubar>
 	</h:form>
 	<p:megaMenu orientation="horizontal" style="margin-top:20px">
-		<p:submenu label="Cadastro" icon="ui-icon-disk">
+		<p:submenu label="Cadastro" icon="ui-icon-disk"
+			rendered="#{professorBean.isUserInRole('PROF')}">
 			<p:column>
 				<p:submenu label="Cadastros de entidadaes">
 					<p:menuitem icon="ui-icon-disk" value="Create Prof"
-						url="createProf.xhtml" />
+						url="/private/createProf.xhtml" />
 					<p:menuitem icon="ui-icon-disk" value="Create Aluno"
-						url="createAluno.xhtml" />
+						url="/private/createAluno.xhtml" />
 					<p:menuitem icon="ui-icon-disk" value="Create Disc"
-						url="createDisc.xhtml" />
+						url="/private/createDisc.xhtml" />
 					<p:menuitem icon="ui-icon-disk" value="Create Turma"
-						url="createTurma.xhtml" />
+						url="/private/createTurma.xhtml" />
 					<p:menuitem icon="ui-icon-disk" value="Mat disciplina"
-						url="matriculaDisciplina.xhtml" />
+						url="/private/matriculaDisciplina.xhtml" />
 
 				</p:submenu>
 
@@ -44,11 +45,14 @@
 			<p:column>
 				<p:submenu label="Visualizar entidades">
 					<p:menuitem icon="ui-icon-search" value="Alunos cadastrados"
-						url="alunosCadastrados.xhtml" />
+						url="/private/alunosCadastrados.xhtml"
+						rendered="#{professorBean.isUserInRole('PROF')}" />
 					<p:menuitem icon="ui-icon-search" value="Turmas cadastradas"
-						url="turmasCadastradas.xhtml" />
+						url="/public/turmasCadastradas.xhtml" />
 					<p:menuitem icon="ui-icon-search" value="Profs. cadastrados"
-						url="professoresCadastrados.xhtml" />
+						url="/public/professoresCadastrados.xhtml" />
+					<p:menuitem icon="ui-icon-search" value="Disc. cadastrados"
+						url="/public/disciplinasCadastradas.xhtml	" />
 				</p:submenu>
 
 			</p:column>
@@ -56,6 +60,7 @@
 		</p:submenu>
 
 	</p:megaMenu>
+
 
 	<h:form id="form">
 		<p:growl id="growl" showDetail="true" sticky="true" />

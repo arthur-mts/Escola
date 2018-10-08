@@ -63,9 +63,9 @@ public class ProfessorBean implements Serializable {
 		ExternalContext externalContext = facesContext.getExternalContext();
 		Principal userPrincipal = externalContext.getUserPrincipal();
 		if (userPrincipal == null) {
-			return "";
+			return "Olá! Faça o login para usar o sistema";
 		}
-		return userPrincipal.getName();
+		return "Olá, "+userPrincipal.getName();
 	}
 
 	public void efetuarLogout() throws IOException, ServletException {
