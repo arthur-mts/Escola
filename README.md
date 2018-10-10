@@ -25,14 +25,14 @@ module add --name=org.postgres --resources=/home/arthurmts/.m2/repository/org/po
 
 /subsystem=datasources/jdbc-driver=postgres:add(driver-name="postgres", driver-module-name="org.postgres", driver-class-name="org.postgresql.Driver")
 
-/subsystem=datasources/data-source=PostgreSQLPool:add(driver-name="postgres", jndi-name="java:/escolaDS", connection-url="jdbc:postgresql://localhost:5432/EscolaCRUD", user-name="postgres", password="postgres")
+/subsystem=datasources/data-source=PostgreSQLPool:add(driver-name="postgres", jndi-name="java:/escolaDS", connection-url="jdbc:postgresql://localhost:5432/Escola", user-name="postgres", password="postgres")
 
 /subsystem=security/security-domain=escolaJdbcRealm/:add(cache-type=default)
 
 /subsystem=security/security-domain=escolaJdbcRealm/authentication=classic:add(login-modules=[{code=Database, flag=Required, module-options={ \
     dsJndiName="java:/escolaDS", \
     principalsQuery="select senha from professor where login = ?", \
-    rolesQuery="select 'PROFESSOR', 'Roles' from professor where login = ?", \
+    rolesQuery="select 'PROF', 'Roles' from professor where login = ?", \
     hashAlgorithm="SHA-256", \
     hashEncoding="base64" \
 }}])
