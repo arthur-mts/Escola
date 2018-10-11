@@ -90,11 +90,6 @@
 				</p:cellEditor>
 			</p:column>
 
-			<p:column rendered="#{professorBean.isUserInRole('PROF')=='false}'"
-				headerText="Nome">
-				<h:outputText value="#{aluno.id}" />
-
-			</p:column>
 
 			<p:column style="width:32px">
 				<p:rowEditor />
@@ -102,7 +97,7 @@
 
 			<p:column style="width:120px">
 				<p:commandButton value="Remover" update="form"
-					rendered="#{professorBean.isUserInRole('PROF')"
+					rendered="#{professorBean.isUserInRole('PROF')}"
 					action="#{alunoBean.removerAluno(aluno)}" />
 			</p:column>
 
