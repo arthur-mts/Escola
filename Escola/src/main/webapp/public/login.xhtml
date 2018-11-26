@@ -14,7 +14,7 @@
 <h:body>
 
 	<h:form id="formMenu">
-		<p:menubar>
+		<p:menubar rendered="#{professorBean.isUserInRole('PROF')}">
 			<f:facet name="options">
 						#{professorBean.userLogin}
 						<p:commandButton id="menuItemLogout" value="Logout"

@@ -104,6 +104,7 @@ public class ProfessorBean implements Serializable {
 						new FacesMessage("ERROR", "Login ja esta cadastrado"));
 			} else {
 				service.save(professor);
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Sucesso!", "Usuario "+professor.getNome() +" cadastrado!"));
 				limpar();
 			}
 		}
